@@ -128,7 +128,7 @@ with gr.Blocks(theme = gr.themes.Soft(), title = "Talky.ai") as demo:
      new_chat_btn.click(lambda: ("", ""), None, [chat_input, chat_output])
 
  with gr.Tab("Productive.ai"):
-     chat_input = gr.Textbox(label = "Chat with Productive.")
+     chat_input = gr.Textbox(label = "Chat with Productive.ai.")
      chat_output = gr.Textbox(label = "Productive's response.")
      chat_input.submit(fn = ProductiveChat, inputs = chat_input, outputs=chat_output)
 
