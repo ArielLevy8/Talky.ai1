@@ -108,7 +108,7 @@ with gr.Blocks(theme = gr.themes.Soft(), title = "Talky.ai") as demo:
      image_output = gr.Image(label = "Arty's image.")
      image_input.submit(fn = generate_image, inputs = image_input, outputs = image_output)
 
-     gen_image_btn = gr.Button("Generate the image response.")
+     gen_image_btn = gr.Button("Create")
      gen_image_btn.click(fn = generate_image, inputs = image_input, outputs = image_output)
 
  with gr.Tab("Creative.ai"):
