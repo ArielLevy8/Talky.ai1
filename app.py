@@ -120,7 +120,7 @@ with gr.Blocks(theme = gr.themes.Soft(), title = "Talky.ai") as demo:
      new_chat_btn.click(lambda: ("", ""), None, [chat_input, chat_output])
 
  with gr.Tab("Brainiac"):
-     chat_input = gr.Textbox(label = "Chat with Brainiac.")
+     chat_input = gr.Textbox(label = "Chat with Brainiac AI.")
      chat_output = gr.Textbox(label = "Brainiac's response.")
      chat_input.submit(fn = BrainChat, inputs = chat_input, outputs=chat_output)
 
