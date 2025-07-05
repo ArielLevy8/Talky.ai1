@@ -4,8 +4,6 @@ import gradio as gr
 import os
 from dotenv import find_dotenv
 
-client = OpenAI()
-
 load_dotenv(find_dotenv())
 api_key = os.getenv("OPENAI_API_KEY")
 client = OpenAI(api_key=api_key)
@@ -110,7 +108,7 @@ with gr.Blocks(theme = gr.themes.Soft(), title = "Talky.ai") as demo:
      image_output = gr.Image(label = "Arty's image.")
      image_input.submit(fn = generate_image, inputs = image_input, outputs = image_output)
 
-     gen_image_btn = gr.Button("Gen an image.")
+     gen_image_btn = gr.Button("Generate an image.")
      gen_image_btn.click(fn = generate_image, inputs = image_input, outputs = image_output)
 
  with gr.Tab("Creative.ai"):
