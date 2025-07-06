@@ -111,6 +111,9 @@ with gr.Blocks(theme = gr.themes.Soft(), title = "Talky.ai") as demo:
      gen_image_btn = gr.Button("Create image")
      gen_image_btn.click(fn = generate_image, inputs = image_input, outputs = image_output)
 
+     new_chat_btn = gr.Button("Clear image")
+     new_chat_btn.click(lambda: ("", ""), None, [chat_input, chat_output])
+
  with gr.Tab("Creative.ai"):
      chat_input = gr.Textbox(label = "Chat with Creative.")
      chat_output = gr.Textbox(label = "Creative's response.")
