@@ -22,6 +22,8 @@ poet_messages = [{"role": "system", "content": "You are A amazing writer and edi
 
 light_messages = [{"role": "system", "content": "You are a quick fast response assistant. And you are made by Ariel Levy. If someone asks you say you were created by Ariel Levy."}]
 
+max_messages = [{"role": "system", "content": "You are A next level version of the AI assistant Talky.ai named Talky.ai Max. Made by Ariel Levy. If anyone asks say you were made by Ariel Levy."}]
+
 def CustomChat(you):
     talker_messages.append({"role": "user", "content": you})
     response = client.chat.completions.create(
@@ -80,6 +82,16 @@ def LightChat(you):
     )
     Chat_reply = response.choices[0].message.content
     light_messages.append({"role": "assistant", "content": Chat_reply})
+    return Chat_reply
+
+def MAXChat(you):
+    max_messages.append({"role": "user", "content": you})
+    response = client.chat.completions.create(
+        model ="gpt-4.1",
+            messages =max_messages
+    )
+    Chat_reply = response.choices[0].message.content
+    max_messages.append({"role": "assistant", "content": Chat_reply})
     return Chat_reply
 
 
@@ -150,6 +162,14 @@ with gr.Blocks(theme = gr.themes.Soft(), title = "Talky.ai") as demo:
      chat_input = gr.Textbox(label = "Chat with Light.")
      chat_output = gr.Textbox(label = "Light's response.")
      chat_input.submit(fn = LightChat, inputs = chat_input, outputs=chat_output)
+
+     new_chat_btn = gr.Button("Clear search")
+     new_chat_btn.click(lambda: ("", ""), None, [chat_input, chat_output])
+
+ with gr.Tab("Talky Max"):
+     chat_input = gr.Textbox(label = "Chat with Max.")
+     chat_output = gr.Textbox(label = "Talky Max response.")
+     chat_input.submit(fn = MAXChat, inputs = chat_input, outputs=chat_output)
 
      new_chat_btn = gr.Button("Clear search")
      new_chat_btn.click(lambda: ("", ""), None, [chat_input, chat_output])
