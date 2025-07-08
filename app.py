@@ -209,4 +209,4 @@ with gr.Blocks(theme = gr.themes.Soft(), title = "Talky.ai") as demo:
      new_chat_btn = gr.Button("Clear search")
      new_chat_btn.click(lambda: ("", ""), None, [chat_input, chat_output])
 
-demo.launch(server_name="0.0.0.0", server_port=30000)
+demo.launch(server_name="0.0.0.0", server_port=22000)
