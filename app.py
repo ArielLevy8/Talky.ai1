@@ -104,6 +104,15 @@ def MAX2Chat(you):
     max_messages.append({"role": "assistant", "content": Chat_reply})
     return Chat_reply
 
+def MAX3Chat(you):
+    max_messages.append({"role": "user", "content": you})
+    response = client.chat.completions.create(
+        model ="gpt-4o-mini",
+            messages =max_messages
+    )
+    Chat_reply = response.choices[0].message.content
+    max_messages.append({"role": "assistant", "content": Chat_reply})
+    return Chat_reply
 
 def generate_image(prompt: str) -> str:
     response = client.images.generate(
@@ -188,6 +197,14 @@ with gr.Blocks(theme = gr.themes.Soft(), title = "Talky.ai") as demo:
      chat_input = gr.Textbox(label = "Chat with MAX 2.5.")
      chat_output = gr.Textbox(label = "MAX's response.")
      chat_input.submit(fn = MAX2Chat, inputs = chat_input, outputs=chat_output)
+
+     new_chat_btn = gr.Button("Clear search")
+     new_chat_btn.click(lambda: ("", ""), None, [chat_input, chat_output])
+
+ with gr.Tab("MAX 3"):
+     chat_input = gr.Textbox(label = "Chat with MAX 3")
+     chat_output = gr.Textbox(label = "MAX's response.")
+     chat_input.submit(fn = MAX3Chat, inputs = chat_input, outputs=chat_output)
 
      new_chat_btn = gr.Button("Clear search")
      new_chat_btn.click(lambda: ("", ""), None, [chat_input, chat_output])
