@@ -114,6 +114,16 @@ def MAX3Chat(you):
     max_messages.append({"role": "assistant", "content": Chat_reply})
     return Chat_reply
 
+def BrainMaxChat(you):
+    brainiac_messages.append({"role": "user", "content": you})
+    response = client.chat.completions.create(
+        model ="gpt-4.1",
+            messages =brainiac_messages
+    )
+    Chat_reply = response.choices[0].message.content
+    brainiac_messages.append({"role": "assistant", "content": Chat_reply})
+    return Chat_reply
+
 def generate_image(prompt: str) -> str:
     response = client.images.generate(
         model ="dall-e-3",
@@ -209,4 +219,12 @@ with gr.Blocks(theme = gr.themes.Soft(), title = "Talky.ai") as demo:
      new_chat_btn = gr.Button("Clear search")
      new_chat_btn.click(lambda: ("", ""), None, [chat_input, chat_output])
 
-demo.launch(server_name="0.0.0.0", server_port=22000)
+ with gr.Tab("Brainiac Max"):
+     chat_input = gr.Textbox(label = "Chat with Brainiac.")
+     chat_output = gr.Textbox(label = "Brainiac's response.")
+     chat_input.submit(fn = BrainMaxChat, inputs = chat_input, outputs=chat_output)
+
+     new_chat_btn = gr.Button("Clear search")
+     new_chat_btn.click(lambda: ("", ""), None, [chat_input, chat_output])
+
+demo.launch(server_name="0.0.0.0", server_port=38000)
