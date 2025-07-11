@@ -124,6 +124,16 @@ def BrainMaxChat(you):
     brainiac_messages.append({"role": "assistant", "content": Chat_reply})
     return Chat_reply
 
+def PoetMaxChat(you):
+    poet_messages.append({"role": "user", "content": you})
+    response = client.chat.completions.create(
+        model ="gpt-4.1",
+            messages =poet_messages
+    )
+    Chat_reply = response.choices[0].message.content
+    poet_messages.append({"role": "assistant", "content": Chat_reply})
+    return Chat_reply
+
 def generate_image(prompt: str) -> str:
     response = client.images.generate(
         model ="dall-e-3",
@@ -223,6 +233,14 @@ with gr.Blocks(theme = gr.themes.Soft(), title = "Talky.ai") as demo:
      chat_input = gr.Textbox(label = "Chat with Brainiac.")
      chat_output = gr.Textbox(label = "Brainiac's response.")
      chat_input.submit(fn = BrainMaxChat, inputs = chat_input, outputs=chat_output)
+
+     new_chat_btn = gr.Button("Clear search")
+     new_chat_btn.click(lambda: ("", ""), None, [chat_input, chat_output])
+
+ with gr.Tab("Poet MAX"):
+     chat_input = gr.Textbox(label = "Chat with Poet MAX.")
+     chat_output = gr.Textbox(label = "Poet MAX's response.")
+     chat_input.submit(fn = PoetMaxChat, inputs = chat_input, outputs=chat_output)
 
      new_chat_btn = gr.Button("Clear search")
      new_chat_btn.click(lambda: ("", ""), None, [chat_input, chat_output])
