@@ -171,11 +171,16 @@ with gr.Blocks(theme = gr.themes.Soft(
      image_input = gr.Textbox(label = "What image should I make?")
      image_output = gr.Image(label = "Arty's image.")
      image_input.submit(fn = generate_image, inputs = image_input, outputs = image_output)
+     chat_input = gr.Textbox(label = "Chat with Max.")
+     chat_output = gr.Textbox(label = "Talky Max's response.")
+     chat_input.submit(fn = MAXChat, inputs = chat_input, outputs=chat_output)
+
+
 
      gen_image_btn = gr.Button("Create image")
      gen_image_btn.click(fn = generate_image, inputs = image_input, outputs = image_output)
 
-     new_chat_btn = gr.Button("Clear image")
+     new_chat_btn = gr.Button("Clear search")
      new_chat_btn.click(lambda: ("", ""), None, [chat_input, chat_output])
 
  with gr.Tab("Creative.ai"):
