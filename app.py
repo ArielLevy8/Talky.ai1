@@ -134,6 +134,16 @@ def PoetMaxChat(you):
     poet_messages.append({"role": "assistant", "content": Chat_reply})
     return Chat_reply
 
+def LightMax(you):
+    light_messages.append({"role": "user", "content": you})
+    response = client.chat.completions.create(
+        model ="o3-mini",
+            messages =light_messages
+    )
+    Chat_reply = response.choices[0].message.content
+    light_messages.append({"role": "assistant", "content": Chat_reply})
+    return Chat_reply
+
 def generate_image(prompt: str) -> str:
     response = client.images.generate(
         model ="dall-e-3",
@@ -145,7 +155,10 @@ def generate_image(prompt: str) -> str:
 
     return response.data[0].url
 
-with gr.Blocks(theme = gr.themes.Soft(), title = "Talky.ai") as demo:
+with gr.Blocks(theme = gr.themes.Soft(
+    primary_hue = "red",
+    neutral_hue = "orange",
+), title = "Talky.ai") as demo:
  with gr.Tab("Talky.ai"):
     chat_input = gr.Textbox(label = "Chat with Talky.")
     chat_output = gr.Textbox(label = "Talky's response.")
@@ -241,6 +254,14 @@ with gr.Blocks(theme = gr.themes.Soft(), title = "Talky.ai") as demo:
      chat_input = gr.Textbox(label = "Chat with Poet MAX.")
      chat_output = gr.Textbox(label = "Poet MAX's response.")
      chat_input.submit(fn = PoetMaxChat, inputs = chat_input, outputs=chat_output)
+
+     new_chat_btn = gr.Button("Clear search")
+     new_chat_btn.click(lambda: ("", ""), None, [chat_input, chat_output])
+
+ with gr.Tab("Light Max"):
+     chat_input = gr.Textbox(label = "Chat with Light Max.")
+     chat_output = gr.Textbox(label = "Light Max's response.")
+     chat_input.submit(fn = LightMax, inputs = chat_input, outputs=chat_output)
 
      new_chat_btn = gr.Button("Clear search")
      new_chat_btn.click(lambda: ("", ""), None, [chat_input, chat_output])
