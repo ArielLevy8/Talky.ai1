@@ -144,17 +144,6 @@ def LightMax(you):
     light_messages.append({"role": "assistant", "content": Chat_reply})
     return Chat_reply
 
-def ProChat(you):
-    light_messages.append({"role": "user", "content": you})
-    response = client.chat.completions.create(
-        model ="gpt-4o",
-        messages =light_messages
-    )
-    Chat_reply = response.choices[0].message.content
-    light_messages.append({"role": "assistant", "content": Chat_reply})
-    return Chat_reply
-
-
 def generate_image(prompt: str) -> str:
     response = client.images.generate(
         model ="dall-e-3",
@@ -279,14 +268,6 @@ with gr.Blocks(theme = gr.themes.Soft(
      chat_input = gr.Textbox(label = "Chat with Light Max.")
      chat_output = gr.Textbox(label = "Light Max's response.")
      chat_input.submit(fn = LightMax, inputs = chat_input, outputs=chat_output)
-
-     new_chat_btn = gr.Button("Clear search")
-     new_chat_btn.click(lambda: ("", ""), None, [chat_input, chat_output])
-
- with gr.Tab("Pro MAX ultra light"):
-     chat_input = gr.Textbox(label = "Chat with Pro Max.")
-     chat_output = gr.Textbox(label = "Pro MAX's response.")
-     chat_input.submit(fn = ProChat, inputs = chat_input, outputs=chat_output)
 
      new_chat_btn = gr.Button("Clear search")
      new_chat_btn.click(lambda: ("", ""), None, [chat_input, chat_output])
