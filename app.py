@@ -143,7 +143,6 @@ def LightMax(you):
     Chat_reply = response.choices[0].message.content
     light_messages.append({"role": "assistant", "content": Chat_reply})
     return Chat_reply
-    return Chat_reply
 
 def generate_image(prompt: str) -> str:
     response = client.images.generate(
@@ -176,6 +175,9 @@ with gr.Blocks(theme = gr.themes.Soft(
      chat_input = gr.Textbox(label = "Chat with Max.")
      chat_output = gr.Textbox(label = "Talky Max's response.")
      chat_input.submit(fn = MAXChat, inputs = chat_input, outputs=chat_output)
+
+
+
      gen_image_btn = gr.Button("Create image")
      gen_image_btn.click(fn = generate_image, inputs = image_input, outputs = image_output)
 
