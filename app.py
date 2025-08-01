@@ -22,7 +22,7 @@ poet_messages = [{"role": "system", "content": "You are A amazing writer and edi
 
 light_messages = [{"role": "system", "content": "You are a quick fast response assistant. And you are made by Ariel Levy. If someone asks you say you were created by Ariel Levy."}]
 
-max_messages = [{"role": "system", "content": "You are A next level version of the AI assistant Talky.ai named Talky.ai Max. Made by Ariel Levy. If anyone asks say you were made by Ariel Levy."}]
+max_messages = [{"role": "system", "content": "You are A next level version of the AI assistant Talky.ai named Talky.ai ultimate. Made by Ariel Levy. If anyone asks say you were made by Ariel Levy."}]
 
 def CustomChat(you):
     talker_messages.append({"role": "user", "content": you})
@@ -156,7 +156,7 @@ def generate_image(prompt: str) -> str:
     return response.data[0].url
 
 with gr.Blocks(theme = gr.themes.Soft(
-    primary_hue = "teal",
+    primary_hue = "green",
     neutral_hue = "emerald",
     secondary_hue = "indigo",
 ), title = "Talky.ai") as demo:
@@ -224,7 +224,7 @@ with gr.Blocks(theme = gr.themes.Soft(
      new_chat_btn = gr.Button("Clear search")
      new_chat_btn.click(lambda: ("", ""), None, [chat_input, chat_output])
 
- with gr.Tab("Talky Max"):
+ with gr.Tab("Talky Ultimate"):
      chat_input = gr.Textbox(label = "Chat with Max.")
      chat_output = gr.Textbox(label = "Talky Max response.")
      chat_input.submit(fn = MAXChat, inputs = chat_input, outputs=chat_output)
@@ -272,4 +272,4 @@ with gr.Blocks(theme = gr.themes.Soft(
      new_chat_btn = gr.Button("Clear search")
      new_chat_btn.click(lambda: ("", ""), None, [chat_input, chat_output])
 
-demo.launch(server_name="0.0.0.0", server_port=38000)
+demo.launch(server_name="0.0.0.0", server_port=6590)
