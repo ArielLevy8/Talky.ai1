@@ -272,4 +272,4 @@ with gr.Blocks(theme = gr.themes.Soft(
      new_chat_btn = gr.Button("Clear search")
      new_chat_btn.click(lambda: ("", ""), None, [chat_input, chat_output])
 
-demo.launch(server_name="0.0.0.0", server_port=6590, show_api=False, pwa=True, css="footer {visibility: hidden}")
+demo.launch(server_name="0.0.0.0", server_port=6590, show_api=False, pwa=True)
