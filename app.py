@@ -27,7 +27,7 @@ max_messages = [{"role": "system", "content": "You are A next level version of t
 def CustomChat(you):
     talker_messages.append({"role": "user", "content": you})
     response = client.chat.completions.create(
-    model = "gpt-5",
+    model = "gpt-3.5-turbo",
         messages =talker_messages
     )
     ChatGPT_reply = response.choices[0].message.content
@@ -156,9 +156,9 @@ def generate_image(prompt: str) -> str:
     return response.data[0].url
 
 with gr.Blocks(theme = gr.themes.Soft(
-     primary_hue = "stone",
-     neutral_hue = "cyan",
-     secondary_hue = "indigo",
+    primary_hue = "emerald",
+    neutral_hue = "cyan",
+    secondary_hue = "indigo",
 ), title = "Talky.ai") as demo:
  with gr.Tab("Talky.ai"):
     chat_input = gr.Textbox(label = "Chat with Talky.")
