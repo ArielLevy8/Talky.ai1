@@ -27,7 +27,7 @@ max_messages = [{"role": "system", "content": "You are A next level version of t
 def CustomChat(you):
     talker_messages.append({"role": "user", "content": you})
     response = client.chat.completions.create(
-    model = "gpt-3.5-turbo",
+    model = "gpt-5",
         messages =talker_messages
     )
     ChatGPT_reply = response.choices[0].message.content
@@ -160,7 +160,13 @@ with gr.Blocks(theme = gr.themes.Soft(
     neutral_hue = "cyan",
     secondary_hue = "indigo",
 ), title = "Talky.ai") as demo:
+ with gr.Tab("Talky.ai"):
+    chat_input = gr.Textbox(label = "Chat with Talky.")
+    chat_output = gr.Textbox(label = "Talky's response.")
+    chat_input.submit(fn = CustomChat, inputs = chat_input, outputs=chat_output)
 
+    new_chat_btn = gr.Button("Clear search")
+    new_chat_btn.click(lambda: ("", ""), None, [chat_input, chat_output])
 
  with gr.Tab("Arty"):
      image_input = gr.Textbox(label = "What image should I make?")
