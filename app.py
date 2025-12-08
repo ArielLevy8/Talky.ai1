@@ -160,13 +160,7 @@ with gr.Blocks(theme = gr.themes.Soft(
     neutral_hue = "cyan",
     secondary_hue = "indigo",
 ), title = "Talky.ai") as demo:
- with gr.Tab("Talky.ai"):
-    chat_input = gr.Textbox(label = "Chat with Talky.")
-    chat_output = gr.Textbox(label = "Talky's response.")
-    chat_input.submit(fn = CustomChat, inputs = chat_input, outputs=chat_output)
 
-    new_chat_btn = gr.Button("Clear search")
-    new_chat_btn.click(lambda: ("", ""), None, [chat_input, chat_output])
 
  with gr.Tab("Arty"):
      image_input = gr.Textbox(label = "What image should I make?")
