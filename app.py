@@ -156,9 +156,9 @@ def generate_image(prompt: str) -> str:
     return response.data[0].url
 
 with gr.Blocks(theme = gr.themes.Soft(
-    primary_hue = "stone",
-    neutral_hue = "cyan",
-    secondary_hue = "indigo",
+     primary_hue = "stone",
+     neutral_hue = "cyan",
+     secondary_hue = "indigo",
 ), title = "Talky.ai") as demo:
  with gr.Tab("Talky.ai"):
     chat_input = gr.Textbox(label = "Chat with Talky.")
